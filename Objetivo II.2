@@ -1,83 +1,20 @@
-program TrabajoPracticoRaiz;
+Algoritmo SumaParesImpares
 
-uses Crt;
+Variables
+    i, suma_pares, suma_impares : Entero
 
-{ =================================================================
-  program Ejercicio_Raiz_Newton_MAPS;
+Inicio
+    suma_pares <- 0
+    suma_impares <- 0
 
-uses Crt;
-const
-  EPS = 1e-6; { Criterio de parada / Tolerancia de precisión }
+    Para i <- 1 Hasta 200 Hacer
+        Si (i MOD 2 = 0) Entonces
+            suma_pares <- suma_pares + i
+        Sino
+            suma_impares <- suma_impares + i
+        FinSi
+    FinPara
 
-{ =====================================================================
-  RUTINA NUEVA: Cálculo de la raíz por el método de Newton
-  Dominio: Z+ (Integer) | Rango: R (Real)
-  ===================================================================== }
-function RaizCuadradaNewton(x: Integer): Real;
-var
-  r_ant, r_nue: Real;
-begin
-  { Control de casos base }
-  if (x = 0) or (x = 1) then
-    RaizCuadradaNewton := x
-  else
-  begin
-    r_nue := x / 2; { Estimación o aproximación inicial }
-    repeat
-      r_ant := r_nue;
-      r_nue := 0.5 * (r_ant + (x / r_ant)); { Fórmula iterativa de Newton }
-    until Abs(r_nue - r_ant) < EPS; { Condición de parada según tolerancia }
-    
-    RaizCuadradaNewton := r_nue;
-  end;
-end;
-
-{ =====================================================================
-  RUTINA UNIFICADA: Evaluación y despliegue de resultados (Enfoque 5.4)
-  ===================================================================== }
-procedure ProbarYComparar(x: Integer);
-var
-  resNewton: Real;
-  resStandard: Real;
-  diferencia: Real;
-begin
-  { Invocación de abstracciones }
-  resNewton := RaizCuadradaNewton(x);
-  resStandard := Sqrt(x);
-  diferencia := Abs(resNewton - resStandard);
-
-  { Despliegue legible combinando con WriteLn }
-  WriteLn(x:5, ' | ', resNewton:15:6, ' | ', resStandard:15:6, ' | ', diferencia:12:8);
-end;
-
-{ =====================================================================
-  PROGRAMA PRINCIPAL: Secuenciación y control del lote de pruebas
-  ===================================================================== }
-var
-  i: Integer;
-  CasosPrueba: array[1..6] of Integer;
-begin
-  ClrScr;
-  
-  { Inicialización de la lista de valores de prueba en Z+ }
-
-CasosPrueba[1] := 2;    { Raíz irracional }
-  CasosPrueba[2] := 4;    { Cuadrado perfecto pequeño }
-  CasosPrueba[3] := 9;    { Cuadrado perfecto }
-  CasosPrueba[4] := 50;   { Valor intermedio }
-  CasosPrueba[5] := 144;  { Cuadrado perfecto mayor }
-  CasosPrueba[6] := 1000; { Valor grande }
-
-  { Encabezado para garantizar la Legibilidad }
-  WriteLn('  X   |  M. DE NEWTON   |  RUTINA STANDARD |  DIFERENCIA');
-  WriteLn('---------------------------------------------------------');
-
-  { Ejecución secuencial ordenada }
-  for i := 1 to 6 do
-  begin
-    ProbarYComparar(CasosPrueba[i]);
-  end;
-
-  WriteLn('---------------------------------------------------------');
-  ReadLn;
-end.
+    Escribir "Suma de números pares: ", suma_pares
+    Escribir "Suma de números impares: ", suma_impares
+Fin
